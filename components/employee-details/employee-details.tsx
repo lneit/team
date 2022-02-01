@@ -1,5 +1,6 @@
 import { Fragment } from 'react';
-
+import EmployeeAttribute from './employee-attribute';
+import { humanReadableDate } from '../../utils/date';
 import classes from './employee-details.module.css';
 
 const EmployeeDetails = (props: any) => {
@@ -16,35 +17,32 @@ const EmployeeDetails = (props: any) => {
     employmentBasis,
   } = props;
 
-  const humanReadableStartDate = new Date(startDate).toLocaleDateString(
-    'en-AU',
-    { day: 'numeric', month: 'long', year: 'numeric' }
-  );
-
-  const humanReadableFinishDate = new Date(finishDate).toLocaleDateString(
-    'en-AU',
-    { day: 'numeric', month: 'long', year: 'numeric' }
-  );
   return (
     <Fragment>
       <section className={classes.content}>
         <h2>Personal Information</h2>
-        <div>{firstName}</div>
-        <div>{middleName}</div>
-        <div>{secondName}</div>
+        <EmployeeAttribute label='First Name' value={firstName} />
+        <EmployeeAttribute label='Middle Name' value={middleName} />
+        <EmployeeAttribute label='Last Name' value={secondName} />
       </section>
       <section className={classes.content}>
         <h2>Contact Details</h2>
-        <div>{email}</div>
-        <div>{mobile}</div>
-        <div>{address}</div>
+        <EmployeeAttribute label='Email Address' value={email} />
+        <EmployeeAttribute label='Mobile Phone Number' value={mobile} />
+        <EmployeeAttribute label='Residential Address' value={address} />
       </section>
       <section className={classes.content}>
         <h2>Employee Status</h2>
-        <div>{contractType}</div>
-        <div>{humanReadableStartDate}</div>
-        <div>{humanReadableFinishDate}</div>
-        <div>{employmentBasis}</div>
+        <EmployeeAttribute label='Contract Type' value={contractType} />
+        <EmployeeAttribute
+          label='Start Date'
+          value={humanReadableDate(startDate)}
+        />
+        <EmployeeAttribute
+          label='Finish Date'
+          value={humanReadableDate(finishDate)}
+        />
+        <EmployeeAttribute label='Employment Basis' value={employmentBasis} />
       </section>
     </Fragment>
   );

@@ -1,7 +1,19 @@
 .content {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   width: 90%;
   max-width: 40em;
   margin: auto;
-  margin-top: 8rem;
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+}
+
+.content label {
+  font-size: 1rem;
+  color: rgb(204,204,204,0.9);
+}
+
+.content div {
+  border: 0.5px solid rgba(204, 204, 204, 0.5);
+  width: 50%;
+  min-height: 2rem;
 }
