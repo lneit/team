@@ -8,8 +8,8 @@ const DUMMY_EMPLOYEES = [
       mobile: '+610412345678`',
       address: '1 Example St, Sydney NSW 2000',
       contractType: 'contract',
-      startDate: '28-07-2021',
-      finishDate: '28-07-2021',
+      startDate: '2021-07-28',
+      finishDate: '2021-07-28',
       employmentBasis: 'full time',
     },
     {
@@ -21,8 +21,8 @@ const DUMMY_EMPLOYEES = [
         mobile: '+610487654321`',
         address: '2 Example St, Sydney NSW 2000',
         contractType: 'permanent',
-        startDate: '08-11-2011',
-        finishDate: '28-07-2021',
+        startDate: '2011-11-08',
+        finishDate: '2021-07-28',
         employmentBasis: 'part time',
       },
   ];

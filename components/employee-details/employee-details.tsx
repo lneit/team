@@ -1,3 +1,7 @@
+import { Fragment } from 'react';
+
+import classes from './employee-details.module.css';
+
 const EmployeeDetails = (props: any) => {
   const {
     firstName,
@@ -10,38 +14,39 @@ const EmployeeDetails = (props: any) => {
     startDate,
     finishDate,
     employmentBasis,
-  } = props.data;
+  } = props;
 
   const humanReadableStartDate = new Date(startDate).toLocaleDateString(
-    "en-UK",
-    { day: "numeric", month: "long", year: "numeric" }
+    'en-AU',
+    { day: 'numeric', month: 'long', year: 'numeric' }
   );
+
   const humanReadableFinishDate = new Date(finishDate).toLocaleDateString(
-    "en-UK",
-    { day: "numeric", month: "long", year: "numeric" }
+    'en-AU',
+    { day: 'numeric', month: 'long', year: 'numeric' }
   );
   return (
-    <div>
-      <div>
+    <Fragment>
+      <section className={classes.content}>
         <h2>Personal Information</h2>
         <div>{firstName}</div>
         <div>{middleName}</div>
         <div>{secondName}</div>
-      </div>
-      <div>
+      </section>
+      <section className={classes.content}>
         <h2>Contact Details</h2>
         <div>{email}</div>
         <div>{mobile}</div>
         <div>{address}</div>
-      </div>
-      <div>
+      </section>
+      <section className={classes.content}>
         <h2>Employee Status</h2>
         <div>{contractType}</div>
         <div>{humanReadableStartDate}</div>
         <div>{humanReadableFinishDate}</div>
         <div>{employmentBasis}</div>
-      </div>
-    </div>
+      </section>
+    </Fragment>
   );
 };
 

@@ -3,7 +3,7 @@ import classes from "../../styles/home.module.css";
 import EmployeeList from "../../components/employees/employee-list";
 import { getAllEmployees } from "../../dummy-data";
 
-const Employees: NextPage = () => {
+const EmployeesPage: NextPage = () => {
   return (
     <div>
        <div className={classes.container}>
@@ -16,4 +16,4 @@ const Employees: NextPage = () => {
   );
 };
 
-export default Employees;
+export default EmployeesPage;
