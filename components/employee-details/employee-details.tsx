@@ -8,10 +8,10 @@ const EmployeeDetails = (props: any) => {
     firstName,
     middleName,
     secondName,
-    email,
+    emailAddress,
     contractType,
-    mobile,
-    address,
+    mobilePhoneNumber,
+    residentialAddress,
     startDate,
     finishDate,
     employmentBasis,
@@ -27,9 +27,9 @@ const EmployeeDetails = (props: any) => {
       </section>
       <section className={classes.content}>
         <h2>Contact Details</h2>
-        <EmployeeAttribute label='Email Address' value={email} />
-        <EmployeeAttribute label='Mobile Phone Number' value={mobile} />
-        <EmployeeAttribute label='Residential Address' value={address} />
+        <EmployeeAttribute label='Email Address' value={emailAddress} />
+        <EmployeeAttribute label='Mobile Phone Number' value={mobilePhoneNumber} />
+        <EmployeeAttribute label='Residential Address' value={residentialAddress} />
       </section>
       <section className={classes.content}>
         <h2>Employee Status</h2>

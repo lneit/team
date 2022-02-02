@@ -1,10 +1,12 @@
-import Link from 'next/link';
 import classes from './employee-item.module.css';
 import Button from '../ui/button';
 
 const EmployeeItem = (props: any) => {
-  const { id, firstName, middleName, secondName, email, contractType } = props;
+  const { id, firstName, middleName, secondName, emailAddress, contractType } =
+    props;
   const viewDetailsLink = `/employees/${id}`;
+  const editDetailsLink = `/employees/edit/${id}`;
+  const deleteEmployeeLink = `/employees/delete/${id}`;
 
   return (
     <li className={classes.item}>
@@ -15,10 +17,12 @@ const EmployeeItem = (props: any) => {
           </h2>
           <div>
             <div>{contractType}</div>
-            <div>{email}</div>
+            <div>{emailAddress}</div>
           </div>
           <div className={classes.actions}>
-            <Button link={viewDetailsLink}>View Details</Button>
+            <Button link={viewDetailsLink}>View</Button>
+            <Button link={editDetailsLink}>Edit</Button>
+            <Button link={deleteEmployeeLink}>Delete</Button>
           </div>
         </div>
       </div>
