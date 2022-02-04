@@ -1,12 +1,28 @@
+import { useEffect, useState } from 'react';
 import type { NextPage } from 'next';
-import classes from '../styles/home.module.css';
-import { getAllEmployees } from '../dummy-data';
 import EmployeeList from '../components/employees/employee-list';
 import Button from '../components/ui/button';
+import classes from '../styles/home.module.css';
 
 const HomePage: NextPage = () => {
-  const employees = getAllEmployees();
   const addEmployeeLink = `/employees/add`;
+
+  const [employees, setEmployees] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    setIsLoading(true);
+    fetch('/api/employees')
+      .then((response) => response.json())
+      .then((data) => {
+        setEmployees(data.employees);
+        setIsLoading(false);
+      });
+  }, []);
+
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
 
   return (
     <div>

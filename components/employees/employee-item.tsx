@@ -2,22 +2,22 @@ import classes from './employee-item.module.css';
 import Button from '../ui/button';
 
 const EmployeeItem = (props: any) => {
-  const { id, firstName, middleName, secondName, emailAddress, contractType } =
-    props;
-  const viewDetailsLink = `/employees/${id}`;
-  const editDetailsLink = `/employees/edit/${id}`;
-  const deleteEmployeeLink = `/employees/delete/${id}`;
+  const { employee } = props;
+  
+  const viewDetailsLink = `/employees/${employee.id}`;
+  const editDetailsLink = `/employees/edit/${employee.id}`;
+  const deleteEmployeeLink = `/employees/delete/${employee.id}`;
 
   return (
     <li className={classes.item}>
       <div className={classes.content}>
         <div className={classes.summary}>
           <h2>
-            {firstName} {middleName} {secondName}
+            {employee.firstName} {employee.middleName} {employee.secondName}
           </h2>
           <div>
-            <div>{contractType}</div>
-            <div>{emailAddress}</div>
+            <div>{employee.contractType}</div>
+            <div>{employee.emailAddress}</div>
           </div>
           <div className={classes.actions}>
             <Button link={viewDetailsLink}>View</Button>

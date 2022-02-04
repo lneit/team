@@ -1,22 +1,29 @@
 import React from 'react';
+import { useRouter } from 'next/router';
 import classes from './employee-delete-form.module.css';
 
 const EmployeeDeleteForm = (props: any) => {
-  const employee = props.employee;
-
-  const handleCancel = (data: any) => {
-    console.log('Cancelling Employee delete: ', data);
+  const deleteEmployee = () => {
+    fetch(`/api/employees/${props.employeeId}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('Received response from the server', data);
+        router.back();
+      });
   };
 
-  const handleConfirm = (data: any) => {
-    console.log('Deleting Employee: ', data);
-  };
+  const router = useRouter();
 
   return (
     <div className={classes.form}>
       <div className={classes.actions}>
-        <button onClick={() => handleCancel(employee)}>Cancel</button>
-        <button onClick={() => handleConfirm(employee)}>Confirm</button>
+        <button onClick={() => router.back()}>Cancel</button>
+        <button onClick={deleteEmployee}>Confirm</button>
       </div>
     </div>
   );

@@ -3,7 +3,7 @@ import type { NextPage } from 'next';
 import EmployeeAddEditForm from '../../components/employee-details/employee-add-edit-form';
 import classes from '../../styles/home.module.css';
 
-const AddEmployeePage: NextPage = () => (
+const EmployeeAddPage: NextPage = () => (
   <Fragment>
     <div className={classes.container}>
       <div className={classes.title}>
@@ -14,4 +14,4 @@ const AddEmployeePage: NextPage = () => (
   </Fragment>
 );
 
-export default AddEmployeePage;
+export default EmployeeAddPage;
