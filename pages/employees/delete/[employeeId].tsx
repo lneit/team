@@ -1,8 +1,8 @@
-import { useEffect, useState, Fragment } from "react";
-import type { NextPage } from "next";
-import { useRouter } from "next/router";
-import EmployeeDeleteForm from "../../../components/employee-details/employee-delete-form";
-import classes from "../../../styles/home.module.css";
+import { useEffect, useState, Fragment } from 'react';
+import type { NextPage } from 'next';
+import { useRouter } from 'next/router';
+import EmployeeDeleteForm from '../../../components/employee-details/employee-delete-form';
+import classes from '../../../styles/home.module.css';
 
 const EmployeeDeletePage: NextPage = () => {
   const router = useRouter();
@@ -29,7 +29,9 @@ const EmployeeDeletePage: NextPage = () => {
     <Fragment>
       <div className={classes.container}>
         <div className={classes.title}>
-          {!!employee && <p>{`Delete Employee ${employee.firstName} ${employee.secondName}`}</p>}
+          {!!employee && (
+            <p>{`Delete Employee ${employee.firstName} ${employee.secondName}`}</p>
+          )}
         </div>
       </div>
       <EmployeeDeleteForm employeeId={employeeId} />

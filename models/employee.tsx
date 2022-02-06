@@ -8,7 +8,8 @@ export enum EmploymentBasis {
   PartTime = 'part time',
 }
 
-export type NewEmployee = {
+export type Employee = {
+  id?: string;
   firstName: string;
   middleName?: string;
   secondName: string;
@@ -19,8 +20,4 @@ export type NewEmployee = {
   startDate?: Date | null;
   finishDate?: Date | null;
   employmentBasis: EmploymentBasis;
-};
-
-export type Employee = NewEmployee & {
-  id: string;
 };
