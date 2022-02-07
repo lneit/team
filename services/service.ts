@@ -2,7 +2,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { IService } from './iservice';
 import { IStorage } from '../repository/istorage';
 
-// Service interface implementation.
+// CRUD Service interface implementation.
 export class Service<T> implements IService<T> {
   public readonly _storage: IStorage<T>;
 
