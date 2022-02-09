@@ -7,11 +7,9 @@ function extractEmployeeData(filePath: string) {
 }
 
 // Repository interface implementation.
-export class FileStorage<T extends { id?: string }> implements IStorage<T> {
-  public readonly _filePath: string;
+export class FileStorage<T extends { id: string }> implements IStorage<T> {
 
-  constructor(filePath: string) {
-    this._filePath = filePath;
+  constructor(private readonly _filePath: string) {
   }
 
   list(): T[] {

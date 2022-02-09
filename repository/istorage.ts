@@ -2,7 +2,7 @@
 export interface IStorage<T> {
   list(): T[];
   get(id: string): T;
-  create(item: Partial<T>): T;
+  create(item: T): T;
   update(id: string, item: T): T;
   delete(id: string): T;
 }
