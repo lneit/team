@@ -2,7 +2,11 @@ import React from 'react';
 import { useRouter } from 'next/router';
 import classes from './employee-delete-form.module.css';
 
-const EmployeeDeleteForm = (props: any) => {
+type EmployeeDeleteFormProps = {
+  employeeId: string;
+};
+
+const EmployeeDeleteForm = (props: EmployeeDeleteFormProps) => {
   const deleteEmployee = () => {
     fetch(`/api/employees/${props.employeeId}`, {
       method: 'DELETE',

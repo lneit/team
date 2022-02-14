@@ -1,7 +1,12 @@
 import EmployeeItem from './employee-item';
 import classes from './employee-list.module.css';
+import { Employee } from '../../models/employee';
 
-const EmployeeList = ({ items }: any) => {
+type EmployeeListProps = {
+  items: Employee[];
+};
+
+const EmployeeList = ({ items }: EmployeeListProps) => {
   return (
     <ul className={classes.list}>
       {items.map((employee: any) => (

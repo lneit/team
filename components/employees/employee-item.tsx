@@ -1,7 +1,12 @@
 import classes from './employee-item.module.css';
 import Button from '../ui/button';
+import { Employee } from '../../models/employee';
 
-const EmployeeItem = (props: any) => {
+type EmployeeItemProps = {
+  employee: Employee
+};
+
+const EmployeeItem = (props: EmployeeItemProps) => {
   const { employee } = props;
   
   const viewDetailsLink = `/employees/${employee.id}`;

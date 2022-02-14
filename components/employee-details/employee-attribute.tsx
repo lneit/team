@@ -1,6 +1,11 @@
 import { Fragment } from 'react';
 
-const EmployeeAttribute = (props: any) => {
+type EmployeeAttributeProps = {
+  label: string;
+  value: string;
+};
+
+const EmployeeAttribute = (props: EmployeeAttributeProps) => {
   const { label, value } = props;
   return (
     <Fragment>

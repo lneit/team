@@ -21,7 +21,7 @@ const EmployeeDetailsPage: NextPage = () => {
       });
   }, []);
 
-  if (isLoading) {
+  if (isLoading && employee) {
     return <p>Loading...</p>;
   }
 
@@ -32,7 +32,7 @@ const EmployeeDetailsPage: NextPage = () => {
           <h1>Employee Details</h1>
         </div>
       </div>
-      <EmployeeDetails {...employee} />
+      {!!employee && <EmployeeDetails employee={employee} />}
     </Fragment>
   );
 };

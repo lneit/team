@@ -8,7 +8,7 @@ export enum EmploymentBasis {
   PartTime = 'part time',
 }
 
-export type NewEmployee = {
+export interface NewEmployee {
   firstName: string;
   middleName?: string;
   secondName: string;

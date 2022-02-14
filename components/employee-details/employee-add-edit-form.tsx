@@ -1,42 +1,24 @@
-import React, { useEffect, useState, Fragment } from 'react';
-import { useForm } from 'react-hook-form';
+import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+import { useForm, FieldValues, UseFormProps } from 'react-hook-form';
+
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 
-import { labelToAttr } from '../../utils/naming';
+import { NewEmployee } from '../../models/employee';
+import Input from '../ui/input';
+import Select from '../ui/select';
 import classes from './employee-add-edit-form.module.css';
 
-const Input = ({ label, register }: any) => {
-  const attrName = labelToAttr(label);
-  return (
-    <Fragment>
-      <label htmlFor={attrName}>{label}</label>
-      <input name={attrName} {...register(attrName)} />
-    </Fragment>
-  );
+type EmployeeAddEditFormProps = {
+  employeeId: string;
 };
 
-const Select = React.forwardRef<HTMLSelectElement, any>(
-  ({ label, options, register }, ref) => {
-    const attrName = labelToAttr(label);
-    return (
-      <Fragment>
-        <label htmlFor={attrName}>{label}</label>
-        <select name={attrName} ref={ref} {...register(attrName)}>
-          {options.map((opt: string) => (
-            <option key={opt} value={opt}>
-              {opt}
-            </option>
-          ))}
-        </select>
-      </Fragment>
-    );
-  }
-);
-
-const EmployeeAddEditForm = ({ employeeId }: any) => {
+const EmployeeAddEditForm = ({ employeeId }: EmployeeAddEditFormProps) => {
   const [employee, setEmployee] = useState(null);
   const isAddMode = !employee;
+
+  const router = useRouter();
 
   // form validation rules
   const validationSchema = Yup.object()
@@ -56,12 +38,18 @@ const EmployeeAddEditForm = ({ employeeId }: any) => {
     })
     .required();
 
-  const { register, handleSubmit, reset, formState } = useForm({
-    defaultValues: isAddMode ? employee : {},
+  let formOptions: UseFormProps<FieldValues, object> = {
     resolver: yupResolver(validationSchema),
-  });
+  };
+
+  const { register, handleSubmit, reset, formState } = useForm(formOptions);
+
+  if (isAddMode && employee) {
+    formOptions.defaultValues = employee;
+  }
 
   const { errors } = formState;
+  // TODO show the errors on the form
   console.log('form errors', errors);
 
   useEffect(() => {
@@ -74,7 +62,9 @@ const EmployeeAddEditForm = ({ employeeId }: any) => {
       });
   }, [reset]);
 
-  const createEmployee = (data: any) => {
+  interface EmployeeInput extends FieldValues, NewEmployee {}
+
+  const createEmployee = (data: EmployeeInput) => {
     fetch('/api/employees', {
       method: 'POST',
       body: JSON.stringify(data),
@@ -84,9 +74,10 @@ const EmployeeAddEditForm = ({ employeeId }: any) => {
     })
       .then((response) => response.json())
       .then((data) => console.log('Received response from the server', data));
+    router.back();
   };
 
-  const updateEmployee = (id: string, data: any) => {
+  const updateEmployee = (id: string, data: EmployeeInput) => {
     fetch(`/api/employees/${id}`, {
       method: 'PUT',
       body: JSON.stringify(data),
@@ -98,8 +89,11 @@ const EmployeeAddEditForm = ({ employeeId }: any) => {
       .then((data) => console.log('Received response from the server', data));
   };
 
-  const onSubmitHandler = (data: any) => {
-    return isAddMode ? createEmployee(data) : updateEmployee(employee.id, data);
+  const onSubmitHandler = (data: { [x: string]: any }) => {
+    const employeeData = data as EmployeeInput;
+    return isAddMode && employee
+      ? createEmployee(employeeData)
+      : updateEmployee(employeeId, employeeData);
   };
 
   return (
