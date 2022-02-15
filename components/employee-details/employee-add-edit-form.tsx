@@ -44,7 +44,7 @@ const EmployeeAddEditForm = ({ employeeId }: EmployeeAddEditFormProps) => {
 
   const { register, handleSubmit, reset, formState } = useForm(formOptions);
 
-  if (isAddMode && employee) {
+  if (!isAddMode && employee) {
     formOptions.defaultValues = employee;
   }
 
@@ -91,7 +91,7 @@ const EmployeeAddEditForm = ({ employeeId }: EmployeeAddEditFormProps) => {
 
   const onSubmitHandler = (data: { [x: string]: any }) => {
     const employeeData = data as EmployeeInput;
-    return isAddMode && employee
+    return isAddMode
       ? createEmployee(employeeData)
       : updateEmployee(employeeId, employeeData);
   };

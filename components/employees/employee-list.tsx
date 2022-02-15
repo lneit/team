@@ -9,7 +9,7 @@ type EmployeeListProps = {
 const EmployeeList = ({ items }: EmployeeListProps) => {
   return (
     <ul className={classes.list}>
-      {items.map((employee: any) => (
+      {items.map((employee: Employee) => (
         <EmployeeItem key={employee.id} employee={employee} />
       ))}
     </ul>

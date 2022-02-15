@@ -3,10 +3,8 @@ import { IService } from './iservice';
 import { IStorage } from '../repository/istorage';
 
 // CRUD Service interface implementation.
-export class Service<T extends {id: string}> implements IService<T> {
-
-  constructor(private readonly _storage: IStorage<T>) {
-  }
+export class Service<T extends { id: string }> implements IService<T> {
+  constructor(private readonly _storage: IStorage<T>) {}
 
   list(): T[] {
     return this._storage.list();
@@ -16,7 +14,7 @@ export class Service<T extends {id: string}> implements IService<T> {
     return this._storage.get(id);
   }
 
-  create(item: Omit<T, "id">): T {
+  create(item: Omit<T, 'id'>): T {
     const itemWithId = {
       ...item,
       id: uuidv4(),

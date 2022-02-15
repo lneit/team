@@ -36,6 +36,12 @@ function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
     res.status(200).json({
       message: `Deleted employee id ${employeeId}`,
     });
+  } else if (req.method === 'POST') {
+    const newEmployee = req.body as Employee;
+    const employee = service.create(newEmployee);
+    res.status(201).json({
+      message: `Created employee id ${employee.id}`,
+    });
   } else if (req.method === 'PUT') {
     const updatedEmployee = req.body as Employee;
     const employee = service.update(employeeId, updatedEmployee);
